@@ -1,0 +1,20 @@
+<h1>Games</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Id</th>
+    <th>Away Team</th>
+    <th>Home Team</th>
+    <th>Date</th>
+  </tr>
+  <% @games.each do |game| %>
+    <tr>
+      <td><%= link_to game.id, game_pitches_path(game) %></td>
+      <td><%= game.away_team %></td>
+      <td><%= game.home_team %></td>
+      <td><%= game.date %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @games %>

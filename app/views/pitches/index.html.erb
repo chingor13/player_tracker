@@ -1,0 +1,20 @@
+<h1>Pitches for Game</h1>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Pitcher</th>
+    <th>Batter</th>
+    <th>Pitch Type</th>
+    <th>Start Speed</th>
+    <th>Result</th>
+  </tr>
+  <% @pitches.each do |pitch| %>
+    <tr>
+      <td><%= pitch.pitcher %></td>
+      <td><%= pitch.batter %></td>
+      <td><%= pitch.pitch_type %></td>
+      <td><%= pitch.start_speed %></td>
+      <td><%= pitch.result %></td>
+    </tr>
+  <% end %>
+</table>
