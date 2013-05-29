@@ -7,8 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "Home", root_path, :class => "brand" %>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li><%= link_to "Games", games_path() %></li>
+            <li><%= link_to "Players", players_path() %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
-<%= yield %>
+    <% if content_for?(:subnav) %>
+      <div class="row">
+        <div class="span3">
+          <%= content_for(:subnav) %>
+        </div>
+        <div class="span9">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </div>
 
 </body>

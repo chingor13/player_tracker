@@ -1,3 +1,15 @@
+<% content_for(:subnav) do %>
+  <h2>Facets</h2>
+  <% @pitches.facets.each do |type, data| %>
+    <h3><%= type %></h3>
+    <ul class="unstyled">
+      <% data['terms'].each do |term| %>
+        <li><%= link_to term['term'], params.merge(type => term['term']) %> (<%= term['count'] %>)</li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
 <h1>Pitches for Game</h1>
 
 <table class="table table-striped table-bordered">
@@ -10,7 +22,7 @@
   </tr>
   <% @pitches.each do |pitch| %>
     <tr>
-      <td><%= pitch.pitcher %></td>
+      <td><%= pitcher_name(pitch.pitcher) %></td>
       <td><%= pitch.batter %></td>
       <td><%= pitch.pitch_type %></td>
       <td><%= pitch.start_speed %></td>
@@ -18,3 +30,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= will_paginate @pitches %>
