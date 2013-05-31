@@ -1,9 +1,8 @@
 PlayerTracker::Application.routes.draw do
 
   resources :players
-  resources :games do
-    resources :pitches
-  end
+  resources :games
+  resources :pitches
 
   root to: "players#index"
 end

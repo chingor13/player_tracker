@@ -13,8 +13,9 @@
         <%= link_to "Home", root_path, :class => "brand" %>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><%= link_to "Games", games_path() %></li>
-            <li><%= link_to "Players", players_path() %></li>
+            <%= nav_tab("Games", :games, games_path) %>
+            <%= nav_tab("Players", :players, players_path) %>
+            <%= nav_tab("Pitches", :pitches, pitches_path) %>
           </ul>
         </div>
       </div>

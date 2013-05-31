@@ -17,3 +17,8 @@ body {
   position: relative;
   padding-top: 40px;
 }
+
+span.label a.x {
+  color: white;
+  margin-left: 2px;
+}

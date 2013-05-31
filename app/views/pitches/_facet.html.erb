@@ -1,0 +1,9 @@
+<%
+  formatter ||= nil
+%>
+<h3><%= name %></h3>
+<ul class="unstyled">
+  <% data.facets[type]['terms'].each do |term| %>
+    <li><%= link_to formatter ? formatter.call(term['term']) : term['term'], params.merge(type => term['term']) %> (<%= term['count'] %>)</li>
+  <% end %>
+</ul>

@@ -1,0 +1,6 @@
+<% filters.each do |type, values| %>
+  <% values.each do |value| %>
+    <% new_params = params.dup.tap{|p| p[type].is_a?(Array) ? p[type].delete(value) : p.delete(type)} %>
+    <span class="label label-info"><%= type %>: <%= value %> <%= link_to "x", new_params, :class => "x" %></span>
+  <% end %>
+<% end %>
