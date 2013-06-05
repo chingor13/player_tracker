@@ -6,9 +6,10 @@
   <%= render partial: "facet", locals: {name: "Pitch type", type: "pitch_type", data: @pitches, formatter: Proc.new{|type| pitch_type_name(type)}} %>
   <%= render partial: "facet", locals: {name: "Outcome", type: "result", data: @pitches, formatter: Proc.new{|type| pitch_outcome_name(type)}} %>
   <%= render partial: "facet", locals: {name: "Game", type: "game_id", data: @pitches} %>
+  <%= render partial: "facet", locals: {name: "Nasty", type: "nasty", data: @pitches} %>
 <% end %>
 
-<h1>Pitches for Game</h1>
+<h1>Pitches</h1>
 
 <%= render partial: "filters", locals: {filters: @filters} %>
 
@@ -19,16 +20,9 @@
     <th>Pitch Type</th>
     <th>Start Speed</th>
     <th>Result</th>
+    <th>Nasty</th>
   </tr>
-  <% @pitches.each do |pitch| %>
-    <tr>
-      <td><%= player_name(pitch.pitcher) %></td>
-      <td><%= player_name(pitch.batter) %></td>
-      <td><%= pitch_type_name(pitch.pitch_type) %></td>
-      <td><%= pitch.start_speed %></td>
-      <td><%= pitch.result %></td>
-    </tr>
-  <% end %>
+  <%= render partial: "pitch", collection: @pitches %>
 </table>
 
 <%= will_paginate @pitches %>

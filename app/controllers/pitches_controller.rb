@@ -5,9 +5,11 @@ class PitchesController < ApplicationController
   before_filter :set_tab
 
   def index
-    @filters = filters = params.slice(:pitcher, :game_id, :pitch_type, :batter, :result).tap do |hash|
+    @filters = filters = params.slice(:pitcher, :game_id, :pitch_type, :batter, :result, :nasty).tap do |hash|
       hash.each {|k,v| hash[k] = Array(v)}
     end
+    sort_by = params.fetch(:sort, "nasty").to_sym
+    sort_order = params.fetch(:desc, nil) == "asc" ? "asc" : "desc"
     @pitches = Gameday::Pitch.search(page: params.fetch(:page, 1), per_page: 30) do
       query do 
         if filters.empty?
@@ -20,7 +22,9 @@ class PitchesController < ApplicationController
           end
         end
       end
-      #filter :terms, filters
+      sort do
+        by sort_by, sort_order
+      end
       facet 'pitcher' do
         terms :pitcher
       end
@@ -35,6 +39,9 @@ class PitchesController < ApplicationController
       end
       facet 'game_id' do
         terms :game_id
+      end
+      facet 'nasty' do
+        terms :nasty
       end
     end
 
